@@ -1,47 +1,121 @@
-# Journal Citation Rates Website
+# Journal Citation Rate Tools
 
-This is the GitHub Pages website for the Journal Citation Rates database.
+Five interactive charts of **Cites per Document (2 years)** — the Scopus/SCImago citation
+ratio — by publication year, covering 756 journals and 15,697 data points from 2000–2025.
 
-## Setup
+Each tool is a single self-contained HTML file: no server, no database, no build step.
+Open one in a browser and it works, including offline.
 
-The website is automatically deployed from the `gh-pages` branch to GitHub Pages.
+| Tool | Journals | Groups |
+|---|---|---|
+| Ecophysiology | 23 | 4 |
+| Ecology, Evolution & Marine | 103 | 9 |
+| Biology (curated) | 94 | 16 |
+| Biology Top 500 | 496 | 18 |
+| Tamzins List (ecotoxicology) | 40 | 6 |
 
-**To enable GitHub Pages:**
-1. Go to your repository Settings
-2. Navigate to **Pages**
-3. Select **Deploy from a branch**
-4. Choose `gh-pages` as the source branch
-5. Your site will be live at: `https://jutfelt.github.io/Journal-Citation-Rates/`
+---
 
-## File Structure
+## Publish on GitHub Pages
+
+**1. Create the repository**
+
+On GitHub, create a new **public** repository — for example `journal-citation-rates`.
+(Pages requires a public repo unless you have a paid plan.)
+
+**2. Push this folder**
+
+From inside this `website/` folder:
+
+```bash
+git init -b main
+```
+
+```bash
+git add . && git commit -m "Journal citation rate tools"
+```
+
+```bash
+git remote add origin https://github.com/YOUR-USERNAME/journal-citation-rates.git
+```
+
+```bash
+git push -u origin main
+```
+
+**3. Turn on Pages**
+
+In the repository: **Settings → Pages → Source: Deploy from a branch**, then choose
+branch `main` and folder `/ (root)`. Save.
+
+Your site appears within a minute or two at:
 
 ```
-├── index.html                          Landing page with navigation
-├── ecophysiology/index.html            23 journals, 1 group, 450 data points
-├── ecology-evolution-marine/index.html 103 journals, 9 groups, 2326 data points
-├── biology-curated/index.html          94 journals, 0 groups, 2126 data points
-├── biology-top-500/index.html          496 journals, 18 groups, 9893 data points
-├── tamzins-list/index.html             40 journals, 6 groups, 902 data points
-└── .nojekyll                           Disables Jekyll processing
+https://YOUR-USERNAME.github.io/journal-citation-rates/
 ```
 
-## Collections Overview
+Individual tools live at `/ecophysiology/`, `/biology-top-500/`, and so on.
 
-- **Ecophysiology** - Comparative physiology and ecology journals (23 journals)
-- **Ecology, Evolution & Marine** - Ecology, evolution, physiology, behaviour, marine biology, conservation, ecotoxicology and fisheries (103 journals)
-- **Biology (Curated)** - Hand-picked cross-section of biology journals (94 journals)
-- **Biology Top 500** - Top journals across 18 biology subfields (496 journals)
-- **Tamzin's List** - Ecotoxicology and environmental science journals (40 journals)
+---
 
-All collections contain citation rate data spanning 2000-2025.
+## Turn on visit counts
 
-## Adding Journal Data
+The pages ship with a [GoatCounter](https://www.goatcounter.com) tag that is **inert until
+you configure it**. GoatCounter is free for personal use, sets no cookies, stores no
+personal data, and needs no consent banner.
 
-Each journal list page can be populated with interactive tables containing:
-- Journal names
-- Citation rates (by year)
-- Impact factors
-- Category/group information
-- Trend data
+**1.** Sign up at [goatcounter.com](https://www.goatcounter.com) and pick a code
+(for example `jutfelt`). Your dashboard will be at `https://jutfelt.goatcounter.com`.
 
-To populate the tables, add the journal data to each collection's `index.html` file.
+**2.** Replace the placeholder in all six pages:
+
+```bash
+grep -rl YOURCODE . --include=*.html | xargs sed -i '' 's/YOURCODE/jutfelt/g'
+```
+
+(On Linux, drop the `''` after `-i`.)
+
+**3.** Commit and push:
+
+```bash
+git add . && git commit -m "Enable analytics" && git push
+```
+
+Visits then appear on your GoatCounter dashboard, broken down **per page**, so you can see
+which of the five tools people actually open, plus referrers and countries.
+
+### Alternatives
+
+- **Cloudflare Pages** — host there instead and analytics are built in, no tag needed.
+- **Plausible** — paid, similar privacy stance; swap the script tag.
+- **Netlify Analytics** — server-side, paid, immune to ad-blockers.
+
+To remove analytics entirely, delete the `<script data-goatcounter=...>` block from each
+HTML file. Everything else keeps working.
+
+---
+
+## Updating the data
+
+The figures are baked into each HTML file at build time, so refreshing them means
+regenerating the pages from source rather than a database update. Ask Claude to re-run the
+pipeline against `scijournal.org`, then rebuild this folder and push.
+
+---
+
+## Caveats worth keeping in view
+
+- The metric is **not** the Clarivate Journal Impact Factor. It divides by *all* documents,
+  not just "citable items", so journals carrying a lot of news and commentary read lower.
+  Each tool's footer reports the measured agreement **for its own journals** — median
+  difference ranges from 3.3% (Ecophysiology) to 7.6% (Biology Top 500).
+- **2023 is missing for most journals** — a gap in the source archive, not a zero. Interior
+  gaps are bridged with a linearly interpolated estimate, drawn as a dotted segment and
+  marked `~`.
+- Frontiers Media, MDPI and Hindawi-imprint titles are excluded by design, as are
+  *Chemosphere*, *Science of the Total Environment* and *Ecotoxicology and Environmental
+  Safety*, over editorial-integrity concerns.
+
+---
+
+Analysis by Fredrik Jutfelt.
