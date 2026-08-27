@@ -1,0 +1,8 @@
+git init -b main
+it -b main
+Initialized empty Git repository in /Users/fredrikjutfelt/Library/Mobile Documents/com~apple~CloudDocs/All projects and papers/Claude impact factor app/.git/
+fredrikjutfelt@MacBook-Air-som-tillhor-Fredrik Claude impact factor app %
+fredrikjutfelt@MacBook-Air-som-tillhor-Fredrik Claude impact factor app % git in
+it -b main
+Initialized empty Git repository in /Users/fredrikjutfelt/Library/Mobile Documents/com~apple~CloudDocs/All projects and papers/Claude impact factor app/.git/
+fredrikjutfelt@MacBook-Air-som-tillhor-Fredrik Claude impact factor app % git add . && git commit -m "Journal citation rate tools"
