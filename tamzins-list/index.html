@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamzin's List Citation Rates</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .stats {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .stats h2 {
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .stat-item {
+            padding: 15px;
+            background: #f9f9f9;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+        }
+        .stat-item strong {
+            color: #764ba2;
+            font-size: 1.5em;
+        }
+        .stat-item span {
+            display: block;
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        table {
+            width: 100%;
+            background: white;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        thead {
+            background: #667eea;
+            color: white;
+        }
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        tr:hover {
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧪 Tamzin's List Citation Rates</h1>
+        <p>Ecotoxicology and environmental science</p>
+    </div>
+
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to all collections</a>
+
+        <div class="stats">
+            <h2>Collection Statistics</h2>
+            <div class="stat-row">
+                <div class="stat-item">
+                    <strong>40</strong>
+                    <span>Journals</span>
+                </div>
+                <div class="stat-item">
+                    <strong>6</strong>
+                    <span>Groups</span>
+                </div>
+                <div class="stat-item">
+                    <strong>902</strong>
+                    <span>Data Points</span>
+                </div>
+                <div class="stat-item">
+                    <strong>2000-2025</strong>
+                    <span>Year Range</span>
+                </div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Journal</th>
+                    <th>Category</th>
+                    <th>2025 Citation Rate</th>
+                    <th>Impact Factor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="4" style="text-align: center; color: #999; padding: 40px;">
+                        Journal data will be populated here
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
